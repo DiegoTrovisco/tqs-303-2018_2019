@@ -20,18 +20,36 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
 
-
     private int cliente;
     private String descricao;
+    private double peso;
+    private String localAtual;
 
     public Pedido(){
 
     }
 
-    public Pedido(int cliente, String descricao) {
+    public Pedido(int cliente, double peso , String descricao, String localAtual) {
         this.cliente = cliente;
+        this.peso = peso;
         this.descricao = descricao;
+        this.localAtual = localAtual;
+    }
 
+    public String getLocalAtual() {
+        return localAtual;
+    }
+
+    public void setLocalAtual(String localAtual) {
+        this.localAtual = localAtual;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
     }
 
     public int getCliente() {

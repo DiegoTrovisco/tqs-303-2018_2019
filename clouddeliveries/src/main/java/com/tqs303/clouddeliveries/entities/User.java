@@ -6,7 +6,6 @@
 package com.tqs303.clouddeliveries.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -26,24 +25,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idUser;
 
-    @Column(name = "nome")
     private String nome;
-
-    @JsonIgnore
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "endereco")
     private String endereco;
-
-    @Column(name = "telemovel")
     private int telemovel;
-
-    @Column(name = "nif")
     private int nif;
 
-    public User(){
+    @JsonIgnore
+    private String password;
 
+    public User(){
     }
     public User(String nome, String password, String endereco, int telemovel, int nif) {
         this.nome = nome;
