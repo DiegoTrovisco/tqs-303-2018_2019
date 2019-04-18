@@ -1,5 +1,7 @@
 package com.tqs303.clouddeliveries;
 
+import com.tqs303.clouddeliveries.entities.Pedido;
+import com.tqs303.clouddeliveries.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +14,6 @@ public class ClouddeliveriesApplication {
     public static void main(String[] args) {
         SpringApplication.run(ClouddeliveriesApplication.class, args);
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
