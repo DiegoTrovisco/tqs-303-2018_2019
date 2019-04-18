@@ -3,23 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tqs303.clouddeliveries.classes;
+package com.tqs303.clouddeliveries.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
+import javax.persistence.*;
 
 /**
- *
  * @author Diego
  */
-public class Cliente {
-    
+@Entity
+public class User {
+
+    @Autowired
+    @Transient
+    private PasswordEncoder passwordEncoder;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idUser;
+
+    @Column(name = "nome")
     private String nome;
-    private int nr_cliente;
+
+    @JsonIgnore
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "endereco")
     private String endereco;
+
+    @Column(name = "telemovel")
     private int telemovel;
+
+    @Column(name = "nif")
     private int nif;
 
-    public Cliente(String nome, int nr_cliente, String endereco, int telemovel, int nif) {
+    public User(){
+
+    }
+    public User(String nome, String password, String endereco, int telemovel, int nif) {
         this.nome = nome;
-        this.nr_cliente = nr_cliente;
+        this.password = passwordEncoder.passwordEncoder().encode(password);
         this.endereco = endereco;
         this.telemovel = telemovel;
         this.nif = nif;
@@ -31,14 +59,6 @@ public class Cliente {
 
     public void setName(String nome) {
         this.nome = nome;
-    }
-
-    public int getNr_cliente() {
-        return nr_cliente;
-    }
-
-    public void setNr_cliente(int nr_cliente) {
-        this.nr_cliente = nr_cliente;
     }
 
     public String getEndereco() {
@@ -64,7 +84,6 @@ public class Cliente {
     public void setNif(int nif) {
         this.nif = nif;
     }
-    
-    
-    
+
+
 }
