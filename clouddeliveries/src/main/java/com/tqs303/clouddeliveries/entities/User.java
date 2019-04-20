@@ -7,19 +7,17 @@ package com.tqs303.clouddeliveries.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Diego
  */
 @Entity
 public class User {
-
-    @Autowired
-    @Transient
-    private PasswordEncoder passwordEncoder;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,16 +26,22 @@ public class User {
     private String nome;
     private String endereco;
     private int telemovel;
+
+    @Column(unique = true)
     private int nif;
+
+    @OneToMany(mappedBy = "remetente", cascade = CascadeType.ALL)
+    private List<Pedido> pedidos;
 
     @JsonIgnore
     private String password;
 
-    public User(){
+    public User() {
     }
+
     public User(String nome, String password, String endereco, int telemovel, int nif) {
         this.nome = nome;
-        this.password = passwordEncoder.passwordEncoder().encode(password);
+        this.password = password;
         this.endereco = endereco;
         this.telemovel = telemovel;
         this.nif = nif;
@@ -75,5 +79,19 @@ public class User {
         this.nif = nif;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 }

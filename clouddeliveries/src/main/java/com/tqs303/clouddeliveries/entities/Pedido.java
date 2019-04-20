@@ -2,10 +2,7 @@ package com.tqs303.clouddeliveries.entities;
 
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 /**
@@ -20,17 +17,21 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idPedido;
 
-    private int cliente;
+//    private int cliente;
     private String descricao;
     private double peso;
     private String localAtual;
+
+    // (fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "remetente")
+    private User remetente;
 
     public Pedido(){
 
     }
 
-    public Pedido(int cliente, double peso , String descricao, String localAtual) {
-        this.cliente = cliente;
+    public Pedido(double peso , String descricao, String localAtual) {
         this.peso = peso;
         this.descricao = descricao;
         this.localAtual = localAtual;
@@ -52,12 +53,12 @@ public class Pedido {
         this.peso = peso;
     }
 
-    public int getCliente() {
-        return cliente;
+    public User getCliente() {
+        return remetente;
     }
 
-    public void setCliente(int cliente) {
-        this.cliente = cliente;
+    public void setCliente(User remetente) {
+        this.remetente = remetente;
     }
 
     public String getDescricao() {
