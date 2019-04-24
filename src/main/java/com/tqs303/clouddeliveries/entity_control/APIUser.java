@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.Transient;
 import java.util.List;
@@ -99,7 +100,6 @@ public class APIUser {
         this.pedido.setDescricao("descr");
         this.pedido.setPeso(1111111.0000);
         this.pRepo.save(this.getPedidoClone(this.pedido));
-
     }
 
 }

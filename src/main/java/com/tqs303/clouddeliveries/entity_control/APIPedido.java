@@ -3,6 +3,7 @@ package com.tqs303.clouddeliveries.entity_control;
 import com.tqs303.clouddeliveries.entities.Pedido;
 import com.tqs303.clouddeliveries.entities.User;
 import com.tqs303.clouddeliveries.repository.PedidoRepo;
+import com.tqs303.clouddeliveries.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +18,28 @@ public class APIPedido {
     private Pedido pedido;
 
     @Autowired
+    private User user;
+
+    @Autowired
     private PedidoRepo pRepo;
 
-//    @PostMapping(path = "/criar_pedido", consumes = "application/json")
-//    public void createPedido(@RequestParam("cliente") User cliente,
-//                             @RequestParam("descricao") String descricao,
-//                             @RequestParam("aLocal") String aLocal,
-//                             @RequestParam("pesp") double peso
-//                             ){
-//        this.pedido.setCliente(cliente);
-//        this.pedido.setDescricao(descricao);
-//        this.pedido.setLocalAtual(aLocal);
-//        this.pedido.setPeso(peso);
-//        this.getPedidoClone( this.getPedidoClone(pedido));
-//    }
+    @Autowired
+    private UserRepo uRepo;
+
+    @PostMapping(path = "/criar_pedido", consumes = "application/json")
+    public void createPedido(@RequestParam("cliente") int cliente,
+                             @RequestParam("descricao") String descricao,
+                             @RequestParam("aLocal") String aLocal,
+                             @RequestParam("pesp") double peso
+                             ){
+
+        user = this.uRepo.findByIdUser(cliente);
+        this.pedido.setCliente(user);
+        this.pedido.setDescricao(descricao);
+        this.pedido.setLocalAtual(aLocal);
+        this.pedido.setPeso(peso);
+        this.getPedidoClone( this.getPedidoClone(pedido));
+    }
 
     @GetMapping(path = "/encontrarPedido")
     public void findPedido(@RequestParam("idPedido") int idPedido){

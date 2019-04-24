@@ -1,12 +1,11 @@
 package com.tqs303.clouddeliveries.entities;
 
 
-
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
- *
  * @author Diego
  */
 
@@ -15,26 +14,36 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idPedido;
+    private int idPedido;
 
-//    private int cliente;
     private String descricao;
     private double peso;
     private String localAtual;
+    private String destino;
 
-    // (fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "remetente")
     private User remetente;
 
-    public Pedido(){
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<Produto> produtos;
+
+    public Pedido() {
 
     }
 
-    public Pedido(double peso , String descricao, String localAtual) {
+    public Pedido(double peso, String descricao, String localAtual, String destino) {
         this.peso = peso;
         this.descricao = descricao;
         this.localAtual = localAtual;
+        this.destino = destino;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
     }
 
     public String getLocalAtual() {
