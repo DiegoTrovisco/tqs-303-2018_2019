@@ -65,7 +65,7 @@
 			<artifactId>javaee-api</artifactId>
 			<version>8.0</version>
 			<scope>test</scope>
-			<type>war</type>
+			<type>jar</type>
 		</dependency>
     </dependencies>
 
