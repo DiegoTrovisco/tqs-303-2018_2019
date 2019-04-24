@@ -12,4 +12,3 @@ TQS - grupo 303 - 2018/2019
 			usecases
 			pivotal tracker
 			sonarqube, jenkins, wildfly(outro?)
-
