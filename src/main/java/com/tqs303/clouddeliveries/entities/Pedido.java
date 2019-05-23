@@ -1,80 +1,93 @@
 package com.tqs303.clouddeliveries.entities;
 
-
 import javax.persistence.*;
 import java.util.List;
 
-
-/**
- * @author Diego
- */
-
+/** @author Diego */
 @Entity
 public class Pedido {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idPedido;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int idPedido;
 
-    private String descricao;
-    private double peso;
-    private String localAtual;
-    private String destino;
+  private String descricao;
+  private double peso;
+  private String localPartida;
+  private String localAtual;
+  private String localDestino;
+  private double preco;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User remetente;
+  @ManyToOne(cascade = CascadeType.ALL)
+  private User remetente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<Produto> produtos;
+  @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+  private List<Produto> produtos;
 
-    public Pedido() {
+  public Pedido() {}
 
-    }
+  public Pedido(
+      double peso, String descricao, String localAtual, String localDestino, double preco) {
+    this.peso = peso;
+    this.descricao = descricao;
+    this.localAtual = localAtual;
+    this.localDestino = localDestino;
+    this.preco = preco;
+  }
 
-    public Pedido(double peso, String descricao, String localAtual, String destino) {
-        this.peso = peso;
-        this.descricao = descricao;
-        this.localAtual = localAtual;
-        this.destino = destino;
-    }
+  public double getPreco() {
+    return preco;
+  }
 
-    public String getDestino() {
-        return destino;
-    }
+  public void setPreco(double preco) {
+    this.preco = preco;
+  }
 
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
+  public String getLocalPartida() {
+    return localPartida;
+  }
 
-    public String getLocalAtual() {
-        return localAtual;
-    }
+  public void setLocalPartida(String localPartida) {
+    this.localPartida = localPartida;
+  }
 
-    public void setLocalAtual(String localAtual) {
-        this.localAtual = localAtual;
-    }
+  public String getLocalDestino() {
+    return localDestino;
+  }
 
-    public double getPeso() {
-        return peso;
-    }
+  public void setLocalDestino(String localDestino) {
+    this.localDestino = localDestino;
+  }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
+  public String getLocalAtual() {
+    return localAtual;
+  }
 
-    public User getCliente() {
-        return remetente;
-    }
+  public void setLocalAtual(String localAtual) {
+    this.localAtual = localAtual;
+  }
 
-    public void setCliente(User remetente) {
-        this.remetente = remetente;
-    }
+  public double getPeso() {
+    return peso;
+  }
 
-    public String getDescricao() {
-        return descricao;
-    }
+  public void setPeso(double peso) {
+    this.peso = peso;
+  }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+  public User getCliente() {
+    return remetente;
+  }
+
+  public void setCliente(User remetente) {
+    this.remetente = remetente;
+  }
+
+  public String getDescricao() {
+    return descricao;
+  }
+
+  public void setDescricao(String descricao) {
+    this.descricao = descricao;
+  }
 }

@@ -79,27 +79,29 @@ public class APIUser {
         return clone;
     }
 
-    // TODO: REMOVE THIS MICK
-    @GetMapping(path = "/test123")
-    public void testCreate(){
-        this.user.setName("nome");
-        this.user.setEndereco("end");
-        this.user.setPassword("password123");
-        this.user.setTelemovel(961234567);
-        this.user.setNif(123456789);
-        this.uRepo.save(this.getUserClone(user));
+    //TODO query for user pass -> create in memory user -> login
 
-    }
-
-    // TODO: REMOVE THIS MICK
-    @GetMapping(path = "/test1234")
-    public void testCreatePedido(){
-        User u = this.uRepo.findByIdUser(1);
-        this.pedido.setCliente(u);
-        this.pedido.setLocalAtual("local");
-        this.pedido.setDescricao("descr");
-        this.pedido.setPeso(1111111.0000);
-        this.pRepo.save(this.getPedidoClone(this.pedido));
-    }
+//    // TODO: REMOVE THIS MICK
+//    @GetMapping(path = "/test123")
+//    public void testCreate(){
+//        this.user.setName("nome");
+//        this.user.setEndereco("end");
+//        this.user.setPassword("password123");
+//        this.user.setTelemovel(961234567);
+//        this.user.setNif(123456789);
+//        this.uRepo.save(this.getUserClone(user));
+//
+//    }
+//
+//    // TODO: REMOVE THIS MICK
+//    @GetMapping(path = "/test1234")
+//    public void testCreatePedido(){
+//        User u = this.uRepo.findByIdUser(1);
+//        this.pedido.setCliente(u);
+//        this.pedido.setLocalAtual("local");
+//        this.pedido.setDescricao("descr");
+//        this.pedido.setPeso(1111111.0000);
+//        this.pRepo.save(this.getPedidoClone(this.pedido));
+//    }
 
 }

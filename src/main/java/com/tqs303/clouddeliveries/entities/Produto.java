@@ -6,49 +6,44 @@ import java.util.List;
 @Entity
 public class Produto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idProduto;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private int idProduto;
 
-    private String tipo;
-    private int quantidade;
+  private String tipo;
+  private int quantidade;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Pedido pedido;
+  @ManyToOne(cascade = CascadeType.ALL)
+  private Pedido pedido;
 
+  public Produto() {}
 
-    public Produto(){
+  public Produto(String tipo, int quantidade) {
+    this.tipo = tipo;
+    this.quantidade = quantidade;
+  }
 
-    }
+  public String getTipo() {
+    return tipo;
+  }
 
-    public Produto(String tipo, int quantidade){
-        this.tipo = tipo;
-        this.quantidade = quantidade;
-    }
+  public void setTipo(String tipo) {
+    this.tipo = tipo;
+  }
 
-    public String getTipo() {
-        return tipo;
-    }
+  public Pedido getPedido() {
+    return pedido;
+  }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+  public void setPedido(Pedido pedido) {
+    this.pedido = pedido;
+  }
 
-    public Pedido getPedido() {
-        return pedido;
-    }
+  public int getQuantidade() {
+    return quantidade;
+  }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
+  public void setQuantidade(int quantidade) {
+    this.quantidade = quantidade;
+  }
 }
-
