@@ -6,7 +6,7 @@
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Index</title>
+    <title>See Requests</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}" href="#">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/}" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/information}" href="#">Information</a>
@@ -35,19 +35,13 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/register}" href="#">Register</a>
             </li>
-            
-            
-            
-          
+
       </div>
     </nav>
-    <div layout:fragment="content" th:remove="tag">
-        <h1>Cloud Deliveries</h1>
-        <p>...</p>
-        <ul>
-            <li>Go to the <a href="/user" th:href="@{/user}">secured pages</a></li>
-        </ul>
-    </div>
+                     
+    
+    
+    
 </body>
 </html>
 
@@ -59,4 +53,5 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>

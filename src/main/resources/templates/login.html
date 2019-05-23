@@ -1,80 +1,75 @@
-<!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="~{fragments/layout}">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Login</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">
-                    <img th:src="@{/img/logo.png}" alt="memorynotfound logo"/>
-                </a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a th:href="@{/}">Home</a>
-                    </li>
-                    <li class="active">
-                        <a th:href="@{/information}">Information</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-</nav>
-<div layout:fragment="content" th:remove="tag">
+      <a class="navbar-brand" href="#">Cloud Deliveries</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h1>Login page</h1>
-            <form th:action="@{/login}" method="post">
-                <div th:if="${param.error}">
-                    <div class="alert alert-danger">
-                        Invalid username or password.
-                    </div>
-                </div>
-                <div th:if="${param.logout}">
-                    <div class="alert alert-info">
-                        You have been logged out.
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>:
-                    <input type="text"
-                           id="username"
-                           name="username"
-                           class="form-control"
-                           autofocus="autofocus"
-                           placeholder="Username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>:
-                    <input type="password"
-                           id="password"
-                           name="password"
-                           class="form-control"
-                           placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit"
-                                   name="login-submit"
-                                   id="login-submit"
-                                   class="form-control btn btn-info"
-                                   value="Log In">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/information}" href="#">Information</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/pedido}" href="#">Create Request</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/verpedidos}" href="#">See Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}" href="#">Register</a>
+            </li>
+            
     </div>
-
-    <p><a href="/" th:href="@{/}">Back to home page</a></p>
-
+</nav>    
+    
+<div>
+    <form name="f" th:action="@{/login}" method="post">
+        <div class="container">
+            <h1>Login</h1>
+            <p>Please fill in this form to login.</p>
+            <div th:if="${param.error}" class="alert alert-error">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}" class="alert alert-success">
+                You have been logged out.
+            </div>
+            
+            <label for="username"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Enter Username" name="username" required>
+            <hr>
+                        
+            <label for="password"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Enter Username" name="password" required>
+            <hr>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn"><b>Log in</b></button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>

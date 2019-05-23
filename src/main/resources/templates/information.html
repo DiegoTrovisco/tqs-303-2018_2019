@@ -23,12 +23,27 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/information}" href="#">Information</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/pedido}" href="#">Create Request</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/verpedidos}" href="#">See Requests</a>
+            </li>         
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/register}" href="#">Register</a>
+            </li>
+            
+            
             
           
       </div>
     </nav>
-                     
-    <div layout:fragment="content" th:remove="tag">
+    
+    
+    <div class="container">
         <h1>Information</h1>
         <h3>Tema</h3>
         <p>CloudDeliveries</p>
@@ -40,6 +55,7 @@ Para o utilizador final, o acesso a um portal único, para as compras mais frequ
         <h3>Referências relacionadas</h3>
         <p>Glovo</p>
     </div>
+    
 </body>
 </html>
 
