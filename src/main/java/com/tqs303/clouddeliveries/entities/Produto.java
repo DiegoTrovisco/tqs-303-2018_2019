@@ -46,4 +46,12 @@ public class Produto {
   public void setQuantidade(int quantidade) {
     this.quantidade = quantidade;
   }
+
+  public int getIdProduto() {
+    return idProduto;
+  }
+
+  public void setIdProduto(int idProduto) {
+    this.idProduto = idProduto;
+  }
 }

@@ -7,7 +7,6 @@ import org.springframework.data.repository.Repository;
 import java.util.List;
 
 public interface UserRepo extends CrudRepository<User, Long> {
-
     User findByNome(String nome);
     User findByIdUser(int id);
 }

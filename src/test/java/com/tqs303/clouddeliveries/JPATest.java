@@ -8,7 +8,6 @@ import com.tqs303.clouddeliveries.repository.ProdutoRepo;
 import com.tqs303.clouddeliveries.repository.UserRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +37,29 @@ class JPATest {
 
   @Test
   void criarPedido() {
+    // First create user
+    User user = new User("nome", "password", "endereco", 962345698, 123456789);
+    userRepo.save(user);
+
+    User queryUser = userRepo.findByNome("nome");
+    assertEquals(user.getIdUser(), queryUser.getIdUser());
+    assertEquals(user.getNome(), queryUser.getNome());
+    assertEquals(user.getPassword(), queryUser.getPassword());
+    assertEquals(user.getEndereco(), queryUser.getEndereco());
+    assertEquals(user.getTelemovel(), queryUser.getTelemovel());
+    assertEquals(user.getIdUser(), queryUser.getIdUser());
+
+    // Second create produto
     Produto produto = new Produto("test", 100);
     produtoRepo.save(produto);
 
+    Produto queryProduto = produtoRepo.findByTipoAndQuantidade("test", 100);
     assertEquals(produtoRepo.findAllByTipo("test").size(), 1);
-    //Pedido
+    assertEquals(produto.getTipo(), queryProduto.getTipo());
+    assertEquals(produto.getQuantidade(), queryProduto.getQuantidade());
+    assertEquals(produto.getIdProduto(), queryProduto.getIdProduto());
+
+    // Create Request
+    Pedido pedido = new Pedido();
   }
 }

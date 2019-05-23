@@ -41,7 +41,7 @@ public class APIUser {
                             @RequestParam("telemovel") int telemovel,
                             @RequestParam("nif") int nif ){
         this.user.setPassword(password);
-        this.user.setName(nome);
+        this.user.setNome(nome);
         this.user.setEndereco(endereco);
         this.user.setTelemovel(telemovel);
         this.user.setNif(nif);
@@ -63,7 +63,7 @@ public class APIUser {
     private User getUserClone(User u){
         User clone = new User();
         clone.setPassword(passwordEncoder.encode(u.getPassword()));
-        clone.setName(u.getNome());
+        clone.setNome(u.getNome());
         clone.setEndereco(u.getEndereco());
         clone.setTelemovel(u.getTelemovel());
         clone.setNif(u.getNif());

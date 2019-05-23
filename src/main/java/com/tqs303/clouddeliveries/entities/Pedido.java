@@ -27,9 +27,10 @@ public class Pedido {
   public Pedido() {}
 
   public Pedido(
-      double peso, String descricao, String localAtual, String localDestino, double preco) {
+      double peso, String descricao, String localPartida, String localAtual, String localDestino, double preco) {
     this.peso = peso;
     this.descricao = descricao;
+    this.localPartida = localPartida;
     this.localAtual = localAtual;
     this.localDestino = localDestino;
     this.preco = preco;

@@ -15,4 +15,9 @@ public class ViewController {
   public String index(){
     return "indexTest";
   }
+
+  @GetMapping(path = "/info")
+  public String info(){
+    return "information";
+  }
 }
