@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.authorizeRequests()
         .antMatchers("/pedido" , "/verpedidos")
         .authenticated()
-        .antMatchers("/", "index", , "information" , "register")
+        .antMatchers("/", "index", "information" , "register" )
         .permitAll()
         .and()
         .formLogin()
