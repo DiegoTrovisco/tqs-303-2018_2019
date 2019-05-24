@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 
+// TODO alterar createPedido
 @Component
 @RestController
 @RequestMapping(path = "/pedido")
@@ -30,7 +31,7 @@ public class APIPedido {
     public void createPedido(@RequestParam("cliente") int cliente,
                              @RequestParam("descricao") String descricao,
                              @RequestParam("aLocal") String aLocal,
-                             @RequestParam("pesp") double peso
+                             @RequestParam("peso") double peso
                              ){
 
         user = this.uRepo.findByIdUser(cliente);

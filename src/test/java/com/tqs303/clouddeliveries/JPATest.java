@@ -8,19 +8,24 @@ import com.tqs303.clouddeliveries.repository.ProdutoRepo;
 import com.tqs303.clouddeliveries.repository.UserRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@Nested
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Transactional(propagation = Propagation.NOT_SUPPORTED)
+@Transactional
 class JPATest {
 
   @Autowired private ProdutoRepo produtoRepo;
@@ -29,8 +34,12 @@ class JPATest {
 
   @Autowired private PedidoRepo pedidoRepo;
 
+  private List<Produto> produtoList;
+
   @BeforeEach
-  void setup() {}
+  void setup() {
+    produtoList = new ArrayList<>();
+  }
 
   @AfterEach
   void tearDown() {}
@@ -54,12 +63,24 @@ class JPATest {
     produtoRepo.save(produto);
 
     Produto queryProduto = produtoRepo.findByTipoAndQuantidade("test", 100);
-    assertEquals(produtoRepo.findAllByTipo("test").size(), 1);
+    assertEquals(1, produtoRepo.findAllByTipo("test").size());
     assertEquals(produto.getTipo(), queryProduto.getTipo());
     assertEquals(produto.getQuantidade(), queryProduto.getQuantidade());
     assertEquals(produto.getIdProduto(), queryProduto.getIdProduto());
 
+
     // Create Request
     Pedido pedido = new Pedido();
+    pedido.setCliente(queryUser);
+    pedido.setDescricao("descr");
+    pedido.setLocalPartida("partida");
+    produtoList.add(queryProduto);
+    pedido.setProdutos(produtoList);
+    pedido.setLocalAtual(pedido.getLocalPartida());
+    pedido.setLocalDestino("destino");
+
+    pedidoRepo.save(pedido);
+
+    assertEquals(1, pedidoRepo.getAllByRemetente_Nome("nome").size());
   }
 }

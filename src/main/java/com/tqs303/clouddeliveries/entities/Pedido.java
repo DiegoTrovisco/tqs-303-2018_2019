@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /** @author Diego */
+// TODO calcular preço segundo peso
 @Entity
 public class Pedido {
 
@@ -27,7 +28,12 @@ public class Pedido {
   public Pedido() {}
 
   public Pedido(
-      double peso, String descricao, String localPartida, String localAtual, String localDestino, double preco) {
+      double peso,
+      String descricao,
+      String localPartida,
+      String localAtual,
+      String localDestino,
+      double preco) {
     this.peso = peso;
     this.descricao = descricao;
     this.localPartida = localPartida;
@@ -90,5 +96,13 @@ public class Pedido {
 
   public void setDescricao(String descricao) {
     this.descricao = descricao;
+  }
+
+  public List<Produto> getProdutos() {
+    return produtos;
+  }
+
+  public void setProdutos(List<Produto> produtos) {
+    this.produtos = produtos;
   }
 }
