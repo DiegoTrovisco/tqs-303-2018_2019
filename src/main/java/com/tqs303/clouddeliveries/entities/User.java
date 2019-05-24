@@ -13,6 +13,8 @@ import javax.persistence.*;
 import java.util.List;
 
 /** @author Diego */
+
+// TODO UNIQUE NOME
 @Entity
 public class User {
 
@@ -46,7 +48,7 @@ public class User {
     return nome;
   }
 
-  public void setName(String nome) {
+  public void setNome(String nome) {
     this.nome = nome;
   }
 
@@ -88,5 +90,13 @@ public class User {
 
   public void setPedidos(List<Pedido> pedidos) {
     this.pedidos = pedidos;
+  }
+
+  public int getIdUser() {
+    return idUser;
+  }
+
+  public void setIdUser(int idUser) {
+    this.idUser = idUser;
   }
 }

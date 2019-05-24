@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ProdutoRepo extends CrudRepository<Produto, Long> {
     List<Produto> findAllByTipo(String tipo);
+    Produto findByTipoAndQuantidade(String tipo, int quantidade);
 }
