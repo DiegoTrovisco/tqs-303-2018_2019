@@ -8,16 +8,32 @@ public class ViewController {
 
   @GetMapping(path = "/login")
   public String login() {
-    return "loginTest";
+    return "login";
   }
 
   @GetMapping(path = "/")
   public String index(){
-    return "indexTest";
+    return "index";
   }
-
-  @GetMapping(path = "/info")
-  public String info(){
+  
+  @GetMapping(path = "/information")
+  public String information(){
     return "information";
   }
+  
+  @GetMapping(path = "/register")
+  public String register(){
+    return "register";
+  }
+  
+  @GetMapping(path = "/pedido")
+  public String pedido(){
+    return "pedido";
+  }
+  
+  @GetMapping(path = "/verpedidos")
+  public String verpedidos(){
+    return "verpedidos";
+  }
+  
 }
