@@ -22,8 +22,6 @@ public class Pedido {
   @ManyToOne(cascade = CascadeType.ALL)
   private User remetente;
 
-  @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-  private List<Produto> produtos;
 
   public Pedido() {}
 
@@ -98,13 +96,6 @@ public class Pedido {
     this.descricao = descricao;
   }
 
-  public List<Produto> getProdutos() {
-    return produtos;
-  }
-
-  public void setProdutos(List<Produto> produtos) {
-    this.produtos = produtos;
-  }
 
   public int getIdPedido() {
     return idPedido;

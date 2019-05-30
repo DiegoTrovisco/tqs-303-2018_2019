@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-
 @Component
 @RestController
 @RequestMapping(path = "/user")
@@ -27,14 +26,13 @@ public class APIUser {
 
   @Autowired private PedidoRepo pRepo;
 
-
   @PostMapping(path = "/registar")
   public void createUser(
-          @RequestParam("name") String nome,
-          @RequestParam("psw") String password,
-          @RequestParam("email") String endereco,
-          @RequestParam("phone") int telemovel,
-          @RequestParam("nif") int nif) {
+      @RequestParam("name") String nome,
+      @RequestParam("psw") String password,
+      @RequestParam("email") String endereco,
+      @RequestParam("phone") int telemovel,
+      @RequestParam("nif") int nif) {
     this.user.setPassword(password);
     this.user.setNome(nome);
     this.user.setEndereco(endereco);
@@ -44,7 +42,6 @@ public class APIUser {
     this.uRepo.save(this.getUserClone(user));
 
     new MyUserPrincipal(this.user);
-
   }
 
   @GetMapping(path = "/encontrarUser", produces = "application/json")
@@ -63,9 +60,8 @@ public class APIUser {
     clone.setNome(u.getNome());
     clone.setEndereco(u.getEndereco());
     clone.setTelemovel(u.getTelemovel());
+    clone.setRole(u.getRole());
     clone.setNif(u.getNif());
     return clone;
   }
-  // TODO query for user pass -> create in memory user -> login
-
 }

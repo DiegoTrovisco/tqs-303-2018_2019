@@ -29,9 +29,4 @@ public class ClouddeliveriesApplication {
     return new Pedido();
   }
 
-  @Bean(name = "produtoinstance")
-  public Produto produtoInstance() {
-    return new Produto();
-  }
-
 }

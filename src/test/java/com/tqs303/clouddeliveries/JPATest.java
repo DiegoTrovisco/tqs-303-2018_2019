@@ -1,10 +1,8 @@
 package com.tqs303.clouddeliveries;
 
 import com.tqs303.clouddeliveries.entities.Pedido;
-import com.tqs303.clouddeliveries.entities.Produto;
 import com.tqs303.clouddeliveries.entities.User;
 import com.tqs303.clouddeliveries.repository.PedidoRepo;
-import com.tqs303.clouddeliveries.repository.ProdutoRepo;
 import com.tqs303.clouddeliveries.repository.UserRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,25 +19,20 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @Nested
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
 class JPATest {
 
-  @Autowired private ProdutoRepo produtoRepo;
 
   @Autowired private UserRepo userRepo;
 
   @Autowired private PedidoRepo pedidoRepo;
 
-  private List<Produto> produtoList;
 
   @BeforeEach
-  void setup() {
-    produtoList = new ArrayList<>();
-  }
+  void setup() {}
 
   @AfterEach
   void tearDown() {}
@@ -58,24 +51,11 @@ class JPATest {
     assertEquals(user.getTelemovel(), queryUser.getTelemovel());
     assertEquals(user.getIdUser(), queryUser.getIdUser());
 
-    // Second create produto
-    Produto produto = new Produto("test", 100);
-    produtoRepo.save(produto);
-
-    Produto queryProduto = produtoRepo.findByTipoAndQuantidade("test", 100);
-    assertEquals(1, produtoRepo.findAllByTipo("test").size());
-    assertEquals(produto.getTipo(), queryProduto.getTipo());
-    assertEquals(produto.getQuantidade(), queryProduto.getQuantidade());
-    assertEquals(produto.getIdProduto(), queryProduto.getIdProduto());
-
-
     // Create Request
     Pedido pedido = new Pedido();
     pedido.setCliente(queryUser);
     pedido.setDescricao("descr");
     pedido.setLocalPartida("partida");
-    produtoList.add(queryProduto);
-    pedido.setProdutos(produtoList);
     pedido.setLocalAtual(pedido.getLocalPartida());
     pedido.setLocalDestino("destino");
 
