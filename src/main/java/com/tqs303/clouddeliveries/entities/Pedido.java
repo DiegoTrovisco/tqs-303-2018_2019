@@ -46,8 +46,8 @@ public class Pedido {
     return preco;
   }
 
-  public void setPreco(double preco) {
-    this.preco = preco;
+  public void setPreco(double peso) {
+    this.preco = peso*5;
   }
 
   public String getLocalPartida() {
@@ -104,5 +104,13 @@ public class Pedido {
 
   public void setProdutos(List<Produto> produtos) {
     this.produtos = produtos;
+  }
+
+  public int getIdPedido() {
+    return idPedido;
+  }
+
+  public void setIdPedido(int idPedido) {
+    this.idPedido = idPedido;
   }
 }

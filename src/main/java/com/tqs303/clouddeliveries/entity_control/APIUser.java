@@ -1,5 +1,7 @@
 package com.tqs303.clouddeliveries.entity_control;
 
+import com.tqs303.clouddeliveries.entities.AuthorityEnum;
+import com.tqs303.clouddeliveries.entities.MyUserPrincipal;
 import com.tqs303.clouddeliveries.entities.Pedido;
 import com.tqs303.clouddeliveries.entities.User;
 import com.tqs303.clouddeliveries.repository.PedidoRepo;
@@ -8,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.Transient;
-import java.util.List;
 
 @Component
 @RestController
@@ -28,19 +27,24 @@ public class APIUser {
 
   @Autowired private PedidoRepo pRepo;
 
-  @PostMapping(path = "/criar_user", consumes = "application/json")
+
+  @PostMapping(path = "/registar")
   public void createUser(
-      @RequestParam("nome") String nome,
-      @RequestParam("password") String password,
-      @RequestParam("endereco") String endereco,
-      @RequestParam("telemovel") int telemovel,
-      @RequestParam("nif") int nif) {
+          @RequestParam("name") String nome,
+          @RequestParam("psw") String password,
+          @RequestParam("email") String endereco,
+          @RequestParam("phone") int telemovel,
+          @RequestParam("nif") int nif) {
     this.user.setPassword(password);
     this.user.setNome(nome);
     this.user.setEndereco(endereco);
     this.user.setTelemovel(telemovel);
     this.user.setNif(nif);
-    uRepo.save(this.getUserClone(user));
+    this.user.setRole(AuthorityEnum.ROLE_USER);
+    this.uRepo.save(this.getUserClone(user));
+
+    new MyUserPrincipal(this.user);
+
   }
 
   @GetMapping(path = "/encontrarUser", produces = "application/json")

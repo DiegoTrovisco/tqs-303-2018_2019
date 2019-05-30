@@ -7,12 +7,16 @@ package com.tqs303.clouddeliveries.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
-/** @author Diego */
 
 // TODO UNIQUE NOME
 @Entity
@@ -34,6 +38,8 @@ public class User {
 
   @JsonIgnore private String password;
 
+  private AuthorityEnum role;
+
   public User() {}
 
   public User(String nome, String password, String endereco, int telemovel, int nif) {
@@ -42,6 +48,7 @@ public class User {
     this.endereco = endereco;
     this.telemovel = telemovel;
     this.nif = nif;
+    this.role = AuthorityEnum.ROLE_USER;
   }
 
   public String getNome() {
@@ -78,6 +85,14 @@ public class User {
 
   public String getPassword() {
     return password;
+  }
+
+  public AuthorityEnum getRole() {
+    return role;
+  }
+
+  public void setRole(AuthorityEnum role) {
+    this.role = role;
   }
 
   public void setPassword(String password) {

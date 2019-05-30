@@ -1,7 +1,6 @@
 package com.tqs303.clouddeliveries;
 
-import com.tqs303.clouddeliveries.entities.Pedido;
-import com.tqs303.clouddeliveries.entities.User;
+import com.tqs303.clouddeliveries.entities.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class ClouddeliveriesApplication {
-  //    @Autowired
-  //    private ApplicationContext appContext;
 
   public static void main(String[] args) {
     SpringApplication.run(ClouddeliveriesApplication.class, args);
@@ -31,4 +28,10 @@ public class ClouddeliveriesApplication {
   public Pedido pedidoInstance() {
     return new Pedido();
   }
+
+  @Bean(name = "produtoinstance")
+  public Produto produtoInstance() {
+    return new Produto();
+  }
+
 }
