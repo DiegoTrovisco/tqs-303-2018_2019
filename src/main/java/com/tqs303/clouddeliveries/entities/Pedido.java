@@ -1,10 +1,8 @@
 package com.tqs303.clouddeliveries.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
-/** @author Diego */
-// TODO calcular preço segundo peso
+
 @Entity
 public class Pedido {
 
