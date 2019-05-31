@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Component
 @RestController
 @RequestMapping(path = "/user")
-public class APIUser {
+public class UserControl {
 
   @Autowired private User user;
 
@@ -42,16 +42,6 @@ public class APIUser {
     this.uRepo.save(this.getUserClone(user));
 
     new MyUserPrincipal(this.user);
-  }
-
-  @GetMapping(path = "/encontrarUser", produces = "application/json")
-  public User findUser(@RequestParam("nome") String nome) {
-    return uRepo.findByNome(nome);
-  }
-
-  @GetMapping(path = "/users", produces = "application/json")
-  public @ResponseBody Iterable<User> findAll() {
-    return uRepo.findAll();
   }
 
   private User getUserClone(User u) {

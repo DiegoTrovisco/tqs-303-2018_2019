@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
-// TODO alterar createPedido
 @Component
 @Controller
 @RequestMapping(path = "/pedido")
-public class APIPedido {
+public class PedidoControl {
 
   @Autowired private Pedido pedido;
 
@@ -49,21 +48,9 @@ public class APIPedido {
     return "pedido";
   }
 
-  @GetMapping(path = "/encontrarPedido")
-  public void findPedido(@RequestParam("idPedido") int idPedido) {
-    this.pRepo.findByIdPedido(idPedido);
-  }
-
-  @GetMapping(path = "/pedidos", produces = "application/json")
-  public @ResponseBody Iterable<Pedido> listarPedidos() {
-    return this.pRepo.findAll();
-  }
-
   @PostMapping(path = "/listar")
   public String findByUsername(@RequestParam("username") String user, Model model) {
-    User queryUser = this.uRepo.findByNome(user);
-    List<Pedido> result = pRepo.getAllByRemetente_IdUser(queryUser.getIdUser());
-    // List<Pedido> result = pRepo.getAllByRemetente_Nome(user);
+    List<Pedido> result = pRepo.getAllByRemetente_Nome(user);
     if (result == null) {
       return "error";
     }
