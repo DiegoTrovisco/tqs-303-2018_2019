@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class APIUser {
 
   @Autowired private UserRepo uRepo;
+
   @Autowired private User user;
+
   @Autowired private BCryptPasswordEncoder passwordEncoder;
 
   @GetMapping(path = "/find/{nome}", produces = "application/json")
@@ -43,5 +45,4 @@ public class APIUser {
 
     return this.user;
   }
-
 }

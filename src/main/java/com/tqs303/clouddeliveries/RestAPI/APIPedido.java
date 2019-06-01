@@ -5,8 +5,9 @@ import com.tqs303.clouddeliveries.entities.Pedido;
 import com.tqs303.clouddeliveries.repository.PedidoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Component
 @RestController
@@ -20,9 +21,14 @@ public class APIPedido {
         this.pRepo.findByIdPedido(idPedido);
     }
 
-    @GetMapping(path = "/pedidos", produces = "application/json")
+    @GetMapping(path = "/all", produces = "application/json")
     public @ResponseBody
     Iterable<Pedido> listarPedidos() {
         return this.pRepo.findAll();
+    }
+
+    @GetMapping(path = "/byUser/{username}")
+    public List findByUsername(@PathVariable("username") String user) {
+        return pRepo.getAllByRemetente_Nome(user);
     }
 }
