@@ -22,45 +22,56 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/}" href="#">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" th:href="@{/information}" href="#">Information</a>
+                <a class="nav-link" th:href="@{/information}">Information</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item active">
-                <a class="nav-link" th:href="@{/pedido}" href="#">Create Request</a>
+                <a class="nav-link" th:href="@{/pedido}">Create Request</a>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item active">
-                <a class="nav-link" th:href="@{/verpedidos}" href="#">See Requests</a>
+                <a class="nav-link" th:href="@{/verpedidos}">See Requests</a>
             </li>
             <li sec:authorize="isAnonymous()" class="nav-item active">
-                <a class="nav-link" th:href="@{/login}" href="#">Login</a>
+                <a class="nav-link" th:href="@{/login}">Login</a>
             </li>
             <li sec:authorize="isAnonymous()" class="nav-item active">
-                <a class="nav-link" th:href="@{/register}" href="#">Register</a>
+                <a class="nav-link" th:href="@{/register}">Register</a>
             </li>
             <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item active">
-                <a class="nav-link" th:href="@{/actualizarpedidos}" href="#">Edit Requests</a>
+                <a class="nav-link" th:href="@{/actualizarpedidos}">Edit Requests</a>
             </li>
-        </ul>
 
-        <form sec:authorize="isAuthenticated()" class="nav-item" th:action="@{/logout}" method="post">
-            <span class="navbar-text" th:text="'Hello: '+${#authentication.getPrincipal().getUsername()}"></span>
-            <input class="btn" type="submit" value="Sign Out"/>
-        </form>
+
+        </ul>
+        <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/user/info}"><span
+                        th:text="'Hello: '+${#authentication.getPrincipal().getUsername()}">
+                    </span></a>
+            </li>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/logout}"
+                  method="post">
+                <input class="btn btn-light" type="submit" value="Sign Out"/>
+            </form>
+        </ul>
     </div>
 </nav>
 <div class="jumbotron">
     <form th:action="@{/user/registar}" method="post">
         <div class="form-group">
             <h1>Register</h1>
+            <div th:if="${create}" class="alert alert-success">
+                User created. You can now login.
+            </div>
             <p>Please fill in this form to create an account.</p>
             <hr>
             <label><b>Name</b></label>
             <input type="text" placeholder="Enter Name" name="name" required>
             <hr>
             <label><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
+            <input type="email" placeholder="Enter Email" name="email" required>
             <hr>
             <label><b>Phone</b></label>
             <input type="text" placeholder="Enter Phone" name="phone" required>
@@ -70,9 +81,6 @@
             <hr>
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
-            <hr>
-<!--            <label><b>Repeat Password</b></label>-->
-<!--            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>-->
             <hr>
             <button type="submit" class="btn"><b>Register</b></button>
         </div>

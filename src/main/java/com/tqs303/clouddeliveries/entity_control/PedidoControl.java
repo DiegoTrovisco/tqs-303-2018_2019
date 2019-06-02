@@ -32,41 +32,44 @@ public class PedidoControl {
       @RequestParam("descricao") String descricao,
       @RequestParam("localPartida") String partida,
       @RequestParam("localDestino") String destino,
-      @RequestParam("peso") double peso) {
+      @RequestParam("peso") double peso, Model model) {
 
     user = this.uRepo.findByNome(principal.getName());
-    this.pedido.setCliente(user);
 
+    this.pedido.setCliente(user);
     this.pedido.setDescricao(descricao);
     this.pedido.setLocalPartida(partida);
     this.pedido.setLocalAtual(partida);
     this.pedido.setLocalDestino(destino);
     this.pedido.setPeso(peso);
+    this.pedido.setPreco(peso);
 
-    this.pRepo.save(this.getPedidoClone(pedido));
-
+    this.pRepo.save(this.pedido);
+    model.addAttribute("create", true);
     return "pedido";
   }
 
   @PostMapping(path = "/listar")
   public String findByUsername(@RequestParam("username") String user, Model model) {
     List<Pedido> result = pRepo.getAllByRemetente_Nome(user);
-    if (result == null) {
-      return "error";
-    }
     model.addAttribute("result", result);
     return "listarpedidos";
   }
 
-  private Pedido getPedidoClone(Pedido p) {
-    Pedido clone = new Pedido();
-    clone.setCliente(p.getCliente());
-    clone.setDescricao(p.getDescricao());
-    clone.setLocalPartida(p.getLocalPartida());
-    clone.setLocalDestino(p.getLocalDestino());
-    clone.setPreco(p.getPeso());
-    clone.setLocalAtual(p.getLocalAtual());
-    clone.setPeso(p.getPeso());
-    return clone;
+  @PostMapping(path = "/editar")
+  public String findById(@RequestParam("idpedido") int id, Model model) {
+    Pedido result = pRepo.findByIdPedido(id);
+    model.addAttribute("result", result);
+    return "admineditar";
+  }
+
+  @PostMapping(path = "/atualizar")
+  public String atualizarPedido(
+      @RequestParam("idpedido") int id, @RequestParam("atual") String atual, Model model) {
+    Pedido update = pRepo.findByIdPedido(id);
+    update.setLocalAtual(atual);
+    pRepo.save(update);
+    model.addAttribute("update", true);
+    return "adminpesquisa";
   }
 }
