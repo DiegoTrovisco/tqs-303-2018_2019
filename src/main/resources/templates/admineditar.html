@@ -67,58 +67,30 @@
             <label for="idpedido"><b>Request Number</b></label>
             <input type="text" id="idpedido" th:value="${result.getIdPedido()}" name="idpedido" readonly>
             <hr>
-
+            <label for="user"><b>Sender</b></label>
+            <input type="text" id="user" th:value="${result.getCliente().getNome()}" name="idpedido" readonly>
+            <hr>
+            <label for="descricao"><b>Description</b></label>
+            <input type="text" id="descricao" th:value="${result.getDescricao()}" name="descricao" required>
+            <hr>
             <label for="atual"><b>Current Location</b></label>
             <input type="text" id="atual" th:value="${result.getLocalAtual()}" name="atual" required>
             <hr>
-
+            <label for="partida"><b>Pickup Location</b></label>
+            <input type="text" id="partida" th:value="${result.getLocalPartida()}" name="partida" required>
+            <hr>
             <label for="destino"><b>Destination</b></label>
             <input type="text" id="destino" th:value="${result.getLocalDestino()}" name="destino" required>
             <hr>
-
+            <label for="peso"><b>Weight (kg)</b></label>
+            <input type="text" id="peso" th:value="${result.getPeso()}" name="peso" required>
+            <hr>
             <div class="form-actions">
                 <button type="submit" class="btn"><b>Update</b></button>
             </div>
         </div>
     </form>
-
-
-    <!--    <table class="table">-->
-    <!--        <thead class="thead-dark">-->
-    <!--        <tr>-->
-    <!--            <th scope="col">Number</th>-->
-    <!--            <th scope="col">Description</th>-->
-    <!--            <th scope="col">Price</th>-->
-    <!--            <th scope="col">Pickup Location</th>-->
-    <!--            <th scope="col">Destination</th>-->
-    <!--            <th scope="col">Current Location</th>-->
-    <!--        </tr>-->
-    <!--        </thead>-->
-    <!--        <tbody>-->
-
-    <!--        <tr>-->
-    <!--            <td th:text="${result.getIdPedido()}"></td>-->
-    <!--            <td th:text="${result.getDescricao()}"></td>-->
-    <!--            <td th:text="${result.getPreco()}"></td>-->
-    <!--            <td th:text="${result.getLocalPartida()}"></td>-->
-    <!--            <td th:text="${result.getLocalDestino()}"></td>-->
-    <!--            <td th:text="${result.getLocalAtual()}"></td>-->
-    <!--        </tr>-->
-    <!--        <th:block th:each="r: ${result}">-->
-    <!--            <tr>-->
-    <!--                <td th:text="${r.getIdPedido()}"></td>-->
-    <!--                <td th:text="${r.getDescricao()}"></td>-->
-    <!--                <td th:text="${r.getPreco()}"></td>-->
-    <!--                <td th:text="${r.getLocalPartida()}"></td>-->
-    <!--                <td th:text="${r.getLocalDestino()}"></td>-->
-    <!--                <td th:text="${r.getLocalAtual()}"></td>-->
-    <!--            </tr>-->
-    <!--        </th:block>-->
-
-    </tbody>
-    </table>
 </div>
-
 </body>
 </html>
 

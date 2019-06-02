@@ -32,7 +32,8 @@ public class PedidoControl {
       @RequestParam("descricao") String descricao,
       @RequestParam("localPartida") String partida,
       @RequestParam("localDestino") String destino,
-      @RequestParam("peso") double peso, Model model) {
+      @RequestParam("peso") double peso,
+      Model model) {
 
     user = this.uRepo.findByNome(principal.getName());
 
@@ -65,9 +66,19 @@ public class PedidoControl {
 
   @PostMapping(path = "/atualizar")
   public String atualizarPedido(
-      @RequestParam("idpedido") int id, @RequestParam("atual") String atual, Model model) {
+      @RequestParam("idpedido") int id,
+      @RequestParam("atual") String atual,
+      @RequestParam("partida") String partida,
+      @RequestParam("destino") String destino,
+      @RequestParam("descricao") String descricao,
+      @RequestParam("peso") double peso,
+      Model model) {
     Pedido update = pRepo.findByIdPedido(id);
     update.setLocalAtual(atual);
+    update.setLocalDestino(destino);
+    update.setLocalPartida(partida);
+    update.setPeso(peso);
+    update.setDescricao(descricao);
     pRepo.save(update);
     model.addAttribute("update", true);
     return "adminpesquisa";

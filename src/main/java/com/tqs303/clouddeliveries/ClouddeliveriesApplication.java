@@ -28,5 +28,4 @@ public class ClouddeliveriesApplication {
   public Pedido pedidoInstance() {
     return new Pedido();
   }
-
 }

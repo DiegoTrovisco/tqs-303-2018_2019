@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
@@ -26,6 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .permitAll()
         .and()
         .logout()
+        .logoutSuccessUrl("/index")
         .permitAll();
   }
 }
