@@ -6,15 +6,10 @@
 package com.tqs303.clouddeliveries.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
 
-/** @author Diego */
-
-// TODO UNIQUE NOME
 @Entity
 public class User {
 
@@ -29,10 +24,13 @@ public class User {
   @Column(unique = true)
   private int nif;
 
-  @OneToMany(mappedBy = "remetente", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @OneToMany(mappedBy = "remetente", cascade = CascadeType.MERGE)
   private List<Pedido> pedidos;
 
   @JsonIgnore private String password;
+
+  private AuthorityEnum role;
 
   public User() {}
 
@@ -42,6 +40,7 @@ public class User {
     this.endereco = endereco;
     this.telemovel = telemovel;
     this.nif = nif;
+    this.role = AuthorityEnum.ROLE_USER;
   }
 
   public String getNome() {
@@ -80,6 +79,14 @@ public class User {
     return password;
   }
 
+  public AuthorityEnum getRole() {
+    return role;
+  }
+
+  public void setRole(AuthorityEnum role) {
+    this.role = role;
+  }
+
   public void setPassword(String password) {
     this.password = password;
   }
@@ -94,9 +101,5 @@ public class User {
 
   public int getIdUser() {
     return idUser;
-  }
-
-  public void setIdUser(int idUser) {
-    this.idUser = idUser;
   }
 }

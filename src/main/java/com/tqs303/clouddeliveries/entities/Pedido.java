@@ -1,10 +1,9 @@
 package com.tqs303.clouddeliveries.entities;
 
-import javax.persistence.*;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/** @author Diego */
-// TODO calcular preço segundo peso
+import javax.persistence.*;
+
 @Entity
 public class Pedido {
 
@@ -19,35 +18,18 @@ public class Pedido {
   private String localDestino;
   private double preco;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @JsonIgnore
+  @ManyToOne(cascade = CascadeType.MERGE)
   private User remetente;
 
-  @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-  private List<Produto> produtos;
-
   public Pedido() {}
-
-  public Pedido(
-      double peso,
-      String descricao,
-      String localPartida,
-      String localAtual,
-      String localDestino,
-      double preco) {
-    this.peso = peso;
-    this.descricao = descricao;
-    this.localPartida = localPartida;
-    this.localAtual = localAtual;
-    this.localDestino = localDestino;
-    this.preco = preco;
-  }
 
   public double getPreco() {
     return preco;
   }
 
-  public void setPreco(double preco) {
-    this.preco = preco;
+  public void setPreco(double peso) {
+    this.preco = peso * 5;
   }
 
   public String getLocalPartida() {
@@ -98,11 +80,7 @@ public class Pedido {
     this.descricao = descricao;
   }
 
-  public List<Produto> getProdutos() {
-    return produtos;
-  }
-
-  public void setProdutos(List<Produto> produtos) {
-    this.produtos = produtos;
+  public int getIdPedido() {
+    return idPedido;
   }
 }

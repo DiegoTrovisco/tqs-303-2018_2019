@@ -60,32 +60,22 @@
 </nav>
 
 <div class="jumbotron">
-    <form th:action="@{/pedido/criar_pedido}" method="post">
+    <form th:action="@{/pedido/editar}" method="post">
         <div class="form-group">
-            <h1>Create Request</h1>
-            <div th:if="${create}" class="alert alert-success">
-                Request Created
+            <div th:if="${update}" class="alert alert-success">
+                Request Updated
             </div>
-            <hr>
-            <label><b>Product Description</b></label>
-            <input type="text" placeholder="Enter Product Descripton" name="descricao" required>
-            <hr>
-            <label><b>Weight (kg)</b></label>
-            <input type="text" placeholder="Enter Weight" name="peso" required>
-            <hr>
-            <label><b>Pickup Location</b></label>
-            <input type="text" placeholder="Enter Pickup Location" name="localPartida" required>
-            <hr>
-            <label><b>Delivery Location</b></label>
-            <input type="text" placeholder="Enter Delivery Location" name="localDestino" required>
-            <hr>
-            <button type="submit" class="btn"><b>Create Request</b></button>
+            <div th:if="${error}" class="alert alert-warning">
+                Request Updated
+            </div>
+            <label for="idpedido"><b>Search request by ID</b></label>
+            <input type="text" id="idpedido" placeholder="Request Number" name="idpedido" required>
+            <div class="form-actions">
+                <button type="submit" class="btn"><b>Search</b></button>
+            </div>
         </div>
     </form>
 </div>
-
-
-
 
 </body>
 </html>

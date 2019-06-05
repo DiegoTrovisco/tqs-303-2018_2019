@@ -58,33 +58,37 @@
         </ul>
     </div>
 </nav>
-
 <div class="jumbotron">
-    <form th:action="@{/pedido/criar_pedido}" method="post">
+    <div th:if="${error}" class="alert alert-warning">
+        Could not retrive information for this user. Please contact admin.
+    </div>
+    <form th:if="${user}" th:action="@{/user/update}" method="post">
         <div class="form-group">
-            <h1>Create Request</h1>
-            <div th:if="${create}" class="alert alert-success">
-                Request Created
+            <h1>Register</h1>
+            <p>Please fill in this form to create an account.</p>
+            <div th:if="${update}" class="alert alert-success">
+                User information updated. Please logout to apply.
             </div>
             <hr>
-            <label><b>Product Description</b></label>
-            <input type="text" placeholder="Enter Product Descripton" name="descricao" required>
+            <label><b>Name</b></label>
+            <input type="text" th:value="${user.getNome()}" name="name" required>
             <hr>
-            <label><b>Weight (kg)</b></label>
-            <input type="text" placeholder="Enter Weight" name="peso" required>
+            <label><b>Email</b></label>
+            <input type="email" th:value="${user.getEndereco()}" name="email" required>
             <hr>
-            <label><b>Pickup Location</b></label>
-            <input type="text" placeholder="Enter Pickup Location" name="localPartida" required>
+            <label><b>Phone</b></label>
+            <input type="text" th:value="${user.getTelemovel()}" name="phone" required>
             <hr>
-            <label><b>Delivery Location</b></label>
-            <input type="text" placeholder="Enter Delivery Location" name="localDestino" required>
+            <label><b>NIF</b></label>
+            <input type="text" th:value="${user.getNif()}" name="nif" required>
             <hr>
-            <button type="submit" class="btn"><b>Create Request</b></button>
+            <label><b>Password</b></label>
+            <input type="password" name="psw" required>
+            <hr>
+            <button type="submit" class="btn"><b>Update Information</b></button>
         </div>
     </form>
 </div>
-
-
 
 
 </body>

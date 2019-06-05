@@ -12,28 +12,32 @@ public class ViewController {
   }
 
   @GetMapping(path = "/")
-  public String index(){
+  public String index() {
     return "index";
   }
-  
+
   @GetMapping(path = "/information")
-  public String information(){
+  public String information() {
     return "information";
   }
-  
+
   @GetMapping(path = "/register")
-  public String register(){
+  public String register() {
     return "register";
   }
-  
+
   @GetMapping(path = "/pedido")
-  public String pedido(){
+  public String pedido() {
     return "pedido";
   }
-  
+
   @GetMapping(path = "/verpedidos")
-  public String verpedidos(){
+  public String verpedidos() {
     return "verpedidos";
   }
-  
+
+  @GetMapping(path = "/actualizarpedidos")
+  public String actualizarpedidos() {
+    return "adminpesquisa";
+  }
 }

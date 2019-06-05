@@ -60,33 +60,39 @@
 </nav>
 
 <div class="jumbotron">
-    <form th:action="@{/pedido/criar_pedido}" method="post">
+    <div th:if="${error}" class="alert alert-warning">
+        Request Not Found.
+    </div>
+    <form th:if="${result}" th:action="@{/pedido/atualizar}" method="post">
         <div class="form-group">
-            <h1>Create Request</h1>
-            <div th:if="${create}" class="alert alert-success">
-                Request Created
+            <h1>Edit Request</h1>
+            <label for="idpedido"><b>Request Number</b></label>
+            <input type="text" id="idpedido" th:value="${result.getIdPedido()}" name="idpedido" readonly>
+            <hr>
+            <label for="user"><b>Sender</b></label>
+            <input type="text" id="user" th:value="${result.getCliente().getNome()}" name="idpedido" readonly>
+            <hr>
+            <label for="descricao"><b>Description</b></label>
+            <input type="text" id="descricao" th:value="${result.getDescricao()}" name="descricao" required>
+            <hr>
+            <label for="atual"><b>Current Location</b></label>
+            <input type="text" id="atual" th:value="${result.getLocalAtual()}" name="atual" required>
+            <hr>
+            <label for="partida"><b>Pickup Location</b></label>
+            <input type="text" id="partida" th:value="${result.getLocalPartida()}" name="partida" required>
+            <hr>
+            <label for="destino"><b>Destination</b></label>
+            <input type="text" id="destino" th:value="${result.getLocalDestino()}" name="destino" required>
+            <hr>
+            <label for="peso"><b>Weight (kg)</b></label>
+            <input type="text" id="peso" th:value="${result.getPeso()}" name="peso" required>
+            <hr>
+            <div class="form-actions">
+                <button type="submit" class="btn"><b>Update</b></button>
             </div>
-            <hr>
-            <label><b>Product Description</b></label>
-            <input type="text" placeholder="Enter Product Descripton" name="descricao" required>
-            <hr>
-            <label><b>Weight (kg)</b></label>
-            <input type="text" placeholder="Enter Weight" name="peso" required>
-            <hr>
-            <label><b>Pickup Location</b></label>
-            <input type="text" placeholder="Enter Pickup Location" name="localPartida" required>
-            <hr>
-            <label><b>Delivery Location</b></label>
-            <input type="text" placeholder="Enter Delivery Location" name="localDestino" required>
-            <hr>
-            <button type="submit" class="btn"><b>Create Request</b></button>
         </div>
     </form>
 </div>
-
-
-
-
 </body>
 </html>
 

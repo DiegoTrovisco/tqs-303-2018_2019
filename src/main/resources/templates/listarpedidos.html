@@ -60,32 +60,37 @@
 </nav>
 
 <div class="jumbotron">
-    <form th:action="@{/pedido/criar_pedido}" method="post">
-        <div class="form-group">
-            <h1>Create Request</h1>
-            <div th:if="${create}" class="alert alert-success">
-                Request Created
-            </div>
-            <hr>
-            <label><b>Product Description</b></label>
-            <input type="text" placeholder="Enter Product Descripton" name="descricao" required>
-            <hr>
-            <label><b>Weight (kg)</b></label>
-            <input type="text" placeholder="Enter Weight" name="peso" required>
-            <hr>
-            <label><b>Pickup Location</b></label>
-            <input type="text" placeholder="Enter Pickup Location" name="localPartida" required>
-            <hr>
-            <label><b>Delivery Location</b></label>
-            <input type="text" placeholder="Enter Delivery Location" name="localDestino" required>
-            <hr>
-            <button type="submit" class="btn"><b>Create Request</b></button>
-        </div>
-    </form>
+
+    <div th:if="${error}" class="alert alert-warning">
+        Request Not Found.
+    </div>
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Pickup Location</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Current Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="r: ${result}">
+            <tr>
+                <td th:text="${r.getIdPedido()}"></td>
+                <td th:text="${r.getDescricao()}"></td>
+                <td th:text="${r.getPreco()}"></td>
+                <td th:text="${r.getLocalPartida()}"></td>
+                <td th:text="${r.getLocalDestino()}"></td>
+                <td th:text="${r.getLocalAtual()}"></td>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
 </div>
-
-
-
 
 </body>
 </html>
