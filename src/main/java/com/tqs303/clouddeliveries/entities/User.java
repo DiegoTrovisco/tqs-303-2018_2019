@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.List;
 
-
-// TODO UNIQUE NOME
 @Entity
 public class User {
 
@@ -103,9 +101,5 @@ public class User {
 
   public int getIdUser() {
     return idUser;
-  }
-
-  public void setIdUser(int idUser) {
-    this.idUser = idUser;
   }
 }

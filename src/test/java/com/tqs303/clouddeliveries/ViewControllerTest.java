@@ -36,6 +36,13 @@ class ViewControllerTest {
   }
 
   @Test
+  void loginGet() throws Exception {
+    this.mockMvc
+            .perform(get("/login"))
+            .andExpect(status().isOk());
+  }
+
+  @Test
   void index() throws Exception {
     this.mockMvc.perform(get("/")).andExpect(status().isOk());
   }

@@ -45,7 +45,7 @@ class APIPedidoTest {
   @BeforeEach
   void setup() {
 
-    user = new User("nome", "password", "endereco", 962345698, 987654321);
+    user = new User("nome", "password", "endereco", 962345698, 999999999);
     userRepo.save(user);
 
     pedido = new Pedido();

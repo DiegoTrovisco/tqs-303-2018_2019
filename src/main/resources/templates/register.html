@@ -65,6 +65,9 @@
             <div th:if="${create}" class="alert alert-success">
                 User created. You can now login.
             </div>
+            <div th:if="${error}" class="alert alert-warning">
+                Could not reach internal server. Try again later.
+            </div>
             <p>Please fill in this form to create an account.</p>
             <hr>
             <label><b>Name</b></label>

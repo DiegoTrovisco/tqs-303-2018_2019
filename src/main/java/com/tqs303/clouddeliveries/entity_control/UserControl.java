@@ -24,16 +24,20 @@ public class UserControl {
 
   @Autowired private UserRepo uRepo;
 
-
   @PostMapping(path = "/registar")
   public String createUser(
-          @RequestParam("name") String nome,
-          @RequestParam("psw") String password,
-          @RequestParam("email") String endereco,
-          @RequestParam("phone") int telemovel,
-          @RequestParam("nif") int nif, Model model) {
-    this.user.setPassword(passwordEncoder.encode(password));
+      @RequestParam("name") String nome,
+      @RequestParam("psw") String password,
+      @RequestParam("email") String endereco,
+      @RequestParam("phone") int telemovel,
+      @RequestParam("nif") int nif,
+      Model model) {
+    if(this.user == null){
+      model.addAttribute("error", true);
+      return "register";
+    }
     this.user.setNome(nome);
+    this.user.setPassword(passwordEncoder.encode(password));
     this.user.setEndereco(endereco);
     this.user.setTelemovel(telemovel);
     this.user.setNif(nif);
@@ -46,18 +50,30 @@ public class UserControl {
   }
 
   @GetMapping(path = "/info")
-  public String infoUser(Principal principal, Model model){
-    model.addAttribute("user", uRepo.findByNome(principal.getName()));
+  public String infoUser(Principal principal, Model model) {
+    User query = uRepo.findByNome(principal.getName());
+    if (query == null) {
+      model.addAttribute("error", true);
+      return "updateuser";
+    }
+    model.addAttribute("user", query);
     return "updateuser";
   }
 
-  @PostMapping(path = "update")
-  public String updateUser(@RequestParam("name") String nome,
-                           @RequestParam("psw") String password,
-                           @RequestParam("email") String endereco,
-                           @RequestParam("phone") int telemovel,
-                           @RequestParam("nif") int nif, Model model, Principal principal){
+  @PostMapping(path = "/update")
+  public String updateUser(
+      @RequestParam("name") String nome,
+      @RequestParam("psw") String password,
+      @RequestParam("email") String endereco,
+      @RequestParam("phone") int telemovel,
+      @RequestParam("nif") int nif,
+      Model model,
+      Principal principal) {
     this.user = uRepo.findByNome(principal.getName());
+    if (this.user == null) {
+      model.addAttribute("error", true);
+      return "updateuser";
+    }
     this.user.setPassword(passwordEncoder.encode(password));
     this.user.setNome(nome);
     this.user.setEndereco(endereco);
@@ -69,7 +85,5 @@ public class UserControl {
 
     new MyUserPrincipal(this.user);
     return "updateuser";
-
   }
-
 }

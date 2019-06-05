@@ -29,14 +29,11 @@ class APIUserTest {
 
   @Autowired private UserRepo userRepo;
 
-
   private User user;
-
 
   @BeforeEach
   void setup() {
-
-    user = new User("nome", "password", "endereco", 962345698, 987654321);
+    user = new User("nome", "password", "endereco", 962345698, 999999999);
     userRepo.save(user);
   }
 
@@ -56,17 +53,17 @@ class APIUserTest {
   @Test
   void findAll() throws Exception {
     this.mockMvc
-            .perform(get("/rest/user/all"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"));
+        .perform(get("/rest/user/all"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"));
   }
 
   @Test
-  void createAdmin()throws Exception {
+  void createAdmin() throws Exception {
     this.mockMvc
-            .perform(get("/rest/user/create/admin/{admin}", "mockadmin"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json;charset=UTF-8"));
+        .perform(get("/rest/user/create/admin/{admin}", "mockadmin"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("application/json;charset=UTF-8"));
     // Then delete
     User remove = this.userRepo.findByNome("mockadmin");
     this.userRepo.delete(remove);

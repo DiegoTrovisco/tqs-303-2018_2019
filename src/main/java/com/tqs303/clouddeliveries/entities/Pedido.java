@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Pedido {
 
@@ -23,30 +22,14 @@ public class Pedido {
   @ManyToOne(cascade = CascadeType.MERGE)
   private User remetente;
 
-
   public Pedido() {}
-
-  public Pedido(
-      double peso,
-      String descricao,
-      String localPartida,
-      String localAtual,
-      String localDestino,
-      double preco) {
-    this.peso = peso;
-    this.descricao = descricao;
-    this.localPartida = localPartida;
-    this.localAtual = localAtual;
-    this.localDestino = localDestino;
-    this.preco = preco;
-  }
 
   public double getPreco() {
     return preco;
   }
 
   public void setPreco(double peso) {
-    this.preco = peso*5;
+    this.preco = peso * 5;
   }
 
   public String getLocalPartida() {
@@ -97,12 +80,7 @@ public class Pedido {
     this.descricao = descricao;
   }
 
-
   public int getIdPedido() {
     return idPedido;
-  }
-
-  public void setIdPedido(int idPedido) {
-    this.idPedido = idPedido;
   }
 }
