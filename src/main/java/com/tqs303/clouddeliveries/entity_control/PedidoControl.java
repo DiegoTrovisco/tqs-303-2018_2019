@@ -53,6 +53,10 @@ public class PedidoControl {
   @PostMapping(path = "/listar")
   public String findByUsername(@RequestParam("username") String user, Model model) {
     List<Pedido> result = pRepo.getAllByRemetente_Nome(user);
+    if (result.isEmpty()) {
+      model.addAttribute("error", true);
+      return "listarpedidos";
+    }
     model.addAttribute("result", result);
     return "listarpedidos";
   }
@@ -60,6 +64,10 @@ public class PedidoControl {
   @PostMapping(path = "/editar")
   public String findById(@RequestParam("idpedido") int id, Model model) {
     Pedido result = pRepo.findByIdPedido(id);
+    if (result == null) {
+      model.addAttribute("error", true);
+      return "admineditar";
+    }
     model.addAttribute("result", result);
     return "admineditar";
   }
@@ -74,6 +82,10 @@ public class PedidoControl {
       @RequestParam("peso") double peso,
       Model model) {
     Pedido update = pRepo.findByIdPedido(id);
+    if (update == null){
+      model.addAttribute("error", true);
+      return "adminpesquisa";
+    }
     update.setLocalAtual(atual);
     update.setLocalDestino(destino);
     update.setLocalPartida(partida);

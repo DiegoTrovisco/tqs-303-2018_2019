@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 @Component
 @RestController
 @RequestMapping(path = "/rest/user")
@@ -32,12 +34,12 @@ public class APIUser {
 
   @GetMapping(path = "/create/admin/{name}", produces = "application/json")
   public User createAdmin(@PathVariable("name") String nome) {
-
+    Random random = new Random();
     this.user.setPassword(passwordEncoder.encode("admin"));
     this.user.setNome(nome);
     this.user.setEndereco("");
     this.user.setTelemovel(0);
-    this.user.setNif(0);
+    this.user.setNif(random.nextInt());
     this.user.setRole(AuthorityEnum.ROLE_ADMIN);
     this.uRepo.save(this.user);
 

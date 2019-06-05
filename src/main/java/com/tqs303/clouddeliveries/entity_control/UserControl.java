@@ -2,9 +2,7 @@ package com.tqs303.clouddeliveries.entity_control;
 
 import com.tqs303.clouddeliveries.entities.AuthorityEnum;
 import com.tqs303.clouddeliveries.entities.MyUserPrincipal;
-import com.tqs303.clouddeliveries.entities.Pedido;
 import com.tqs303.clouddeliveries.entities.User;
-import com.tqs303.clouddeliveries.repository.PedidoRepo;
 import com.tqs303.clouddeliveries.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,13 +20,10 @@ public class UserControl {
 
   @Autowired private User user;
 
-  @Autowired private Pedido pedido;
-
   @Autowired private BCryptPasswordEncoder passwordEncoder;
 
   @Autowired private UserRepo uRepo;
 
-  @Autowired private PedidoRepo pRepo;
 
   @PostMapping(path = "/registar")
   public String createUser(

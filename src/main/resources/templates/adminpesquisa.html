@@ -65,6 +65,9 @@
             <div th:if="${update}" class="alert alert-success">
                 Request Updated
             </div>
+            <div th:if="${error}" class="alert alert-warning">
+                Request Updated
+            </div>
             <label for="idpedido"><b>Search request by ID</b></label>
             <input type="text" id="idpedido" placeholder="Request Number" name="idpedido" required>
             <div class="form-actions">

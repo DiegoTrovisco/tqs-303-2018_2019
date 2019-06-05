@@ -26,7 +26,8 @@ public class User {
   @Column(unique = true)
   private int nif;
 
-  @OneToMany(mappedBy = "remetente", cascade = CascadeType.ALL)
+  @JsonIgnore
+  @OneToMany(mappedBy = "remetente", cascade = CascadeType.MERGE)
   private List<Pedido> pedidos;
 
   @JsonIgnore private String password;

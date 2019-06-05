@@ -60,8 +60,10 @@
 </nav>
 
 <div class="jumbotron">
-
-    <form th:action="@{/pedido/atualizar}" method="post">
+    <div th:if="${error}" class="alert alert-warning">
+        Request Not Found.
+    </div>
+    <form th:if="${result}" th:action="@{/pedido/atualizar}" method="post">
         <div class="form-group">
             <h1>Edit Request</h1>
             <label for="idpedido"><b>Request Number</b></label>

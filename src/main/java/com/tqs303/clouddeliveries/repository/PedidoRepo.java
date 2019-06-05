@@ -9,6 +9,8 @@ public interface PedidoRepo extends CrudRepository<Pedido, Long> {
 
   Pedido findByIdPedido(int id_pedido);
 
+  Pedido findPedidoByIdPedido(int id_pedido);
+
   List<Pedido> getAllByRemetente_IdUser(int id);
 
   List<Pedido> getAllByRemetente_Nome(String nome);

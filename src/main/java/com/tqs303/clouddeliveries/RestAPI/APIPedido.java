@@ -16,9 +16,9 @@ public class APIPedido {
 
   @Autowired private PedidoRepo pRepo;
 
-  @GetMapping(path = "/find/{idPedido}")
-  public void findPedido(@PathVariable("idPedido") int idPedido) {
-    this.pRepo.findByIdPedido(idPedido);
+  @GetMapping(path = "/find/{idPedido}", produces = "application/json")
+  public Pedido findPedido(@PathVariable("idPedido") int idPedido) {
+    return this.pRepo.findPedidoByIdPedido(idPedido);
   }
 
   @GetMapping(path = "/all", produces = "application/json")
@@ -26,8 +26,8 @@ public class APIPedido {
     return this.pRepo.findAll();
   }
 
-  @GetMapping(path = "/byUser/{username}")
-  public List findByUsername(@PathVariable("username") String user) {
-    return pRepo.getAllByRemetente_Nome(user);
+  @GetMapping(path = "/byUser/{username}", produces = "application/json")
+  public @ResponseBody List findByUsername(@PathVariable("username") String user) {
+    return this.pRepo.getAllByRemetente_Nome(user);
   }
 }

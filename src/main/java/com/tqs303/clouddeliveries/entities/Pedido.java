@@ -1,5 +1,7 @@
 package com.tqs303.clouddeliveries.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -17,7 +19,8 @@ public class Pedido {
   private String localDestino;
   private double preco;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @JsonIgnore
+  @ManyToOne(cascade = CascadeType.MERGE)
   private User remetente;
 
 

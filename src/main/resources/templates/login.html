@@ -63,7 +63,7 @@
     <form th:action="@{/login}" method="post">
         <div class="form-group">
             <h1>Login</h1>
-            <div th:if="${param.error}" class="alert alert-error">
+            <div th:if="${param.error}" class="alert alert-warning">
                 Invalid username and password.
             </div>
             <div th:if="${param.logout}" class="alert alert-success">

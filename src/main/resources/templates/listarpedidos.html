@@ -61,6 +61,10 @@
 
 <div class="jumbotron">
 
+    <div th:if="${error}" class="alert alert-warning">
+        Request Not Found.
+    </div>
+
     <table class="table">
         <thead class="thead-dark">
         <tr>
