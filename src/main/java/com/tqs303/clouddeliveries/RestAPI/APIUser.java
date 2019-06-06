@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 @Component
@@ -22,6 +24,13 @@ public class APIUser {
 
   @Autowired private BCryptPasswordEncoder passwordEncoder;
 
+  private Random rand;
+
+  public APIUser() throws NoSuchAlgorithmException {
+    this.rand = SecureRandom.getInstanceStrong();
+  }
+
+
   @GetMapping(path = "/find/{nome}", produces = "application/json")
   public User findUser(@PathVariable("nome") String nome) {
     return uRepo.findByNome(nome);
@@ -34,12 +43,11 @@ public class APIUser {
 
   @GetMapping(path = "/create/admin/{name}", produces = "application/json")
   public User createAdmin(@PathVariable("name") String nome) {
-    Random random = new Random();
     this.user.setPassword(passwordEncoder.encode("admin"));
     this.user.setNome(nome);
     this.user.setEndereco("");
     this.user.setTelemovel(0);
-    this.user.setNif(random.nextInt());
+    this.user.setNif(this.rand.nextInt());
     this.user.setRole(AuthorityEnum.ROLE_ADMIN);
     this.uRepo.save(this.user);
 
